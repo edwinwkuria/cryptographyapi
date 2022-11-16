@@ -2,7 +2,7 @@
 using cryptographybusiness.Service;
 using cryptographybusiness.Service.Interfaces;
 
-namespace Tests.MessageStoreTests
+namespace Tests.ServiceTests
 {
     [TestClass]
     public class MessageStoreTests

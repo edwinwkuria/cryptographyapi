@@ -6,6 +6,7 @@ using System;
 using Tests.Handlers;
 using System.Security.Cryptography;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Tests.ServiceTests
 {
@@ -16,7 +17,11 @@ namespace Tests.ServiceTests
         public void TestSendMessage()
         {
             IMessageService ims = new MessageService();
-            var sth = SymmetricTestHelper.EncryptMessage("Hello World");
+            var msg = new cryptographybusiness.Models.MessageStore.Message
+            { sender_id = 6, recipient_id = 7, message = "Test Message", timestamp = System.DateTime.Now };
+
+            string msgString = JsonConvert.SerializeObject(msg);
+            var sth = SymmetricTestHelper.EncryptMessage(msgString);
             SendMessage sm = new SendMessage {
                 message = sth.encryted,key = sth.key,iv = sth.iv };
             var sendMsg = ims.SendMessage(sm);

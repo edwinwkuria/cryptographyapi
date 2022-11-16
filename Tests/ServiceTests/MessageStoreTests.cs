@@ -12,7 +12,7 @@ namespace Tests.ServiceTests
         {
             IMessageStore messageStore = new MessageStore();
             var response = messageStore.AddMessage(new cryptographybusiness.Models.MessageStore.Message 
-            { sender_id = 1, recipient_id = 2, message = "Test Message", timestamp = System.DateTime.Now});
+            { sender_id = 4, recipient_id = 5, message = "Test Message", timestamp = System.DateTime.Now});
             Assert.IsTrue(response.Result.success);
         }
         [TestMethod]

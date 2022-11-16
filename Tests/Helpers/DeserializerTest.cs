@@ -12,7 +12,7 @@ namespace Tests.Helpers
         public void TestDeserializeString()
         {
             var msg = new cryptographybusiness.Models.MessageStore.Message
-            { sender_id = 1, recipient_id = 2, message = "Test Message", timestamp = System.DateTime.Now };
+            { sender_id = 6, recipient_id = 7, message = "Test Message", timestamp = System.DateTime.Now };
 
             string msgString = JsonConvert.SerializeObject(msg);
 

@@ -17,7 +17,7 @@ namespace cryptographyapi.Controllers
         }
 
         [HttpGet("send")]
-        public async Task<Object> SendMessage(SendMessageRequestModel model)
+        public async Task<Object> SendMessage([FromBody]SendMessageRequestModel model)
         {
             var _model = _mapper.Map<SendMessage>(model);
             var response = await _messageService.SendMessage(_model);

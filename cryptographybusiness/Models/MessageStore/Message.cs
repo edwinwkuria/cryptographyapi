@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cryptographybusiness.Models.MessageStore
 {
-    internal class Message
+    public class Message
     {
         public int sender_id { get; set; }
         public int recipient_id { get; set; }

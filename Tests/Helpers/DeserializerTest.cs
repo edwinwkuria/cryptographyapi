@@ -20,6 +20,12 @@ namespace Tests.Helpers
             var result = Deserializer.DeserializeString<Message>(msgString);
             Assert.IsTrue(result.Result.success);
             Assert.AreEqual(msg.message, result.Result.data.message);
+
+            var msg2 = "Hello World";
+
+            var result2 = Deserializer.DeserializeString<Message>(msg2);
+            Assert.IsTrue(result.Result.success);
+            Assert.IsNull(result2.Result.data);
         }
 
         [TestMethod]

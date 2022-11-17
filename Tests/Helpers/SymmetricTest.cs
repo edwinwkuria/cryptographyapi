@@ -21,5 +21,13 @@ namespace Tests.Helpers
             var sth = SymmetricTestHelper.EncryptMessage(msg);
             Assert.AreEqual(msg, Symmetric.Decrypt(sth.encryted, sth.key, sth.iv));
         }
+        [TestMethod]
+        public void TestEncrypt()
+        {
+            var msg = "Hello World!";
+            var encrypt = Symmetric.Encrypt(msg);
+            var decrypted = SymmetricTestHelper.DecryptMessage(encrypt.encrypted,encrypt.key,encrypt.iv);
+            Assert.AreEqual(msg, decrypted);
+        }
     }
 }

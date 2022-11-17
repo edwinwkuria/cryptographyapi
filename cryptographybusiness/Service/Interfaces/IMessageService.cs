@@ -9,7 +9,7 @@ namespace cryptographybusiness.Service.Interfaces
 {
     public interface IMessageService
     {
-        Task<(bool success, string message, object data)> SendMessage(SendMessage model);
-        Task<(bool success, string message, object data)> GetMessages(GetMessages model);
+        Task<(bool success, string message, object? data)> SendMessage(SendMessage model);
+        Task<(bool success, string message, GetMessageResponse data )> GetMessages(GetMessages model);
     }
 }

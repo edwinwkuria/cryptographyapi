@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace cryptographybusiness.Models.MessageService
 {
-    public class GetMessages
+    public class GetMessageResponse
     {
-        public int user_id { get; set; }
+        public string message { get; set; }
+        public string key { get; set; }
+        public string iv { get; set; }
     }
 }

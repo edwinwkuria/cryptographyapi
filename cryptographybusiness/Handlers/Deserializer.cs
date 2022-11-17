@@ -19,5 +19,22 @@ namespace cryptographybusiness.Handlers
                 return Task.FromResult(response);
             }
         }
+
+        internal static Task<(bool success, string message, string? data)> SerializeObject<T>(T content)
+        {
+            (bool success, string message, string? data) response;
+            try
+            {
+                var result = JsonConvert.SerializeObject(content);
+                response = (true, "success", result);
+                return Task.FromResult(response);
+
+            }
+            catch (Exception ex)
+            {
+                response = (false, ex.Message, null);
+                return Task.FromResult(response);
+            }
+        }
     }
 }

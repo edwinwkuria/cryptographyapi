@@ -23,9 +23,9 @@ namespace cryptographyapi.Controllers
             var response = await _messageService.SendMessage(_model);
             if (response.success)
             {
-                return Ok();
+                return Ok(response);
             }
-            return BadRequest();
+            return BadRequest(response);
         }
 
         [HttpGet("user/{userid}")]
@@ -35,9 +35,9 @@ namespace cryptographyapi.Controllers
             var response = await _messageService.GetMessages(_model);
             if (response.success)
             {
-                return Ok();
+                return Ok(response);
             }
-            return BadRequest();
+            return BadRequest(response);
         }
     }
 }

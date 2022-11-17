@@ -2,5 +2,7 @@
 {
     public class GetMessagesRequestModel
     {
+        public int user_id { get; set; }
     }
+
 }

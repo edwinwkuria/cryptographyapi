@@ -12,9 +12,19 @@ namespace cryptographybusiness.Service
     {
         private static readonly IMessageStore _messageStore = new MessageStore();
 
-        public async Task<(bool success, string message, object data)> GetMessages(GetMessages model)
+        public async Task<(bool success, string message, GetMessageResponse data)> GetMessages(GetMessages model)
         {
-            throw new NotImplementedException();
+            var messages = await _messageStore.ReadMessages(model.user_id);
+            if (!messages.success)
+                ReturnFalseWithErrorMessage(messages.message);
+
+            var serialize = await Deserializer.SerializeObject<List<Message>>(messages.data);
+            if (!serialize.success)
+                ReturnFalseWithErrorMessage(serialize.message);
+
+            var encrypt = Symmetric.Encrypt(serialize.data);
+
+            return(true, "success", new GetMessageResponse { message = encrypt.encrypted, key = encrypt.key, iv = encrypt.iv });
         }
 
         public async Task<(bool success, string message, object? data)> SendMessage(SendMessage model)

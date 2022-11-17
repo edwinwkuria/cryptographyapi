@@ -2,6 +2,7 @@
 using cryptographybusiness.Models.MessageStore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Tests.Helpers
 {
@@ -19,6 +20,23 @@ namespace Tests.Helpers
             var result = Deserializer.DeserializeString<Message>(msgString);
             Assert.IsTrue(result.Result.success);
             Assert.AreEqual(msg.message, result.Result.data.message);
+        }
+
+        [TestMethod]
+        public void TestSerializeString()
+        {
+            List<Message> msgList = new List<Message>();
+            msgList.Add(new cryptographybusiness.Models.MessageStore.Message
+            { sender_id = 6, recipient_id = 7, message = "Test Message", timestamp = System.DateTime.Now });
+            msgList.Add(new cryptographybusiness.Models.MessageStore.Message
+            { sender_id = 7, recipient_id = 6, message = "Test Message", timestamp = System.DateTime.Now });
+
+            var list = Deserializer.SerializeObject<List<Message>>(msgList).Result;
+
+            Assert.IsTrue(list.success);
+            var desrialize = JsonConvert.DeserializeObject <List<Message>>(list.data);
+            Assert.AreEqual(msgList.Count, desrialize.Count);
+
         }
 
     }

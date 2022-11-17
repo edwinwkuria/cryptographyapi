@@ -26,6 +26,18 @@ namespace Tests.ServiceTests
                 message = sth.encryted,key = sth.key,iv = sth.iv };
             var sendMsg = ims.SendMessage(sm);
             Assert.IsTrue(sendMsg.Result.success);
+
+            var msg2 = "Hello World";
+            var sth2 = SymmetricTestHelper.EncryptMessage(msg2);
+            SendMessage sm2 = new SendMessage
+            {
+                message = sth2.encryted,
+                key = sth2.key,
+                iv = sth2.iv
+            };
+            var sendMsg2 = ims.SendMessage(sm2);
+            Assert.AreEqual("success",sendMsg.Result.message);
+
         }
         [TestMethod]
         public void TestReadMessages()

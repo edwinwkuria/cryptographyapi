@@ -1,4 +1,5 @@
 ﻿using cryptographybusiness.Handlers;
+using cryptographybusiness.Helpers;
 using cryptographybusiness.Models.MessageService;
 using cryptographybusiness.Models.MessageStore;
 using cryptographybusiness.Service.Interfaces;
@@ -30,17 +31,21 @@ namespace cryptographybusiness.Service
         public async Task<(bool success, string message, object? data)> SendMessage(SendMessage model)
         {
             var result = Symmetric.Decrypt(model.message, model.key, model.iv);
-
             if (result == null)
-                ReturnFalseWithErrorMessage("Error decrypting message");
+                return ReturnFalseWithErrorMessage("Error decrypting message");
 
             var msg = await Deserializer.DeserializeString<Message>(result);
-            if(!msg.success)
-                ReturnFalseWithErrorMessage(msg.message);
+            if(!msg.success || msg.data == null)
+                return ReturnFalseWithErrorMessage(msg.message);
+
+            var validate = ValidateMessage.ValidateEncryptedMessage(msg.data);
+            if (!validate.success)
+                return ReturnFalseWithErrorMessage(validate.message);
+            
 
             var addmsgresult = await _messageStore.AddMessage(msg.data);
             if(!addmsgresult.success)
-                ReturnFalseWithErrorMessage(addmsgresult.message);
+                return ReturnFalseWithErrorMessage(addmsgresult.message);
 
             return (true, "success", null);
 

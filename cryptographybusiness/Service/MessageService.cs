@@ -25,12 +25,12 @@ namespace cryptographybusiness.Service
 
             var encrypt = Symmetric.Encrypt(serialize.data);
 
-            return(true, "success", new GetMessageResponse { message = encrypt.encrypted, key = encrypt.key, iv = encrypt.iv });
+            return(true, "success", new GetMessageResponse { Message = encrypt.encrypted, Key = encrypt.key, IV = encrypt.iv });
         }
 
         public async Task<(bool success, string message, object? data)> SendMessage(SendMessage model)
         {
-            var result = Symmetric.Decrypt(model.message, model.key, model.iv);
+            var result = Symmetric.Decrypt(model.Message, model.Key, model.IV);
             if (result == null)
                 return ReturnFalseWithErrorMessage("Error decrypting message");
 

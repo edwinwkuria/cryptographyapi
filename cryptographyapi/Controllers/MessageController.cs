@@ -9,6 +9,8 @@ using Newtonsoft.Json;
 
 namespace cryptographyapi.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class MessageController : ControllerBase
     {
         private readonly IMessageService _messageService;
@@ -54,9 +56,9 @@ namespace cryptographyapi.Controllers
             var sth = Symmetric.Encrypt(msgString);
             var encrypted = new SendMessage
             {
-                message = sth.encrypted,
-                key = sth.key,
-                iv = sth.iv
+                Message = sth.encrypted,
+                Key = sth.key,
+                IV = sth.iv
             };
             var response = await _messageService.SendMessage(encrypted);
             if (response.success)

@@ -13,9 +13,9 @@ namespace cryptographybusiness.Handlers
                 response = (true,"success",result);
                 return Task.FromResult(response);
 
-            } catch(Exception ex)
+            } catch
             {
-                response = (false, "error desrializing message", default(T));
+                response = (false, "error deserializing message", default(T));
                 return Task.FromResult(response);
             }
         }

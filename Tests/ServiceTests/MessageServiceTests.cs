@@ -23,7 +23,7 @@ namespace Tests.ServiceTests
             string msgString = JsonConvert.SerializeObject(msg);
             var sth = SymmetricTestHelper.EncryptMessage(msgString);
             SendMessage sm = new SendMessage {
-                message = sth.encryted,key = sth.key,iv = sth.iv };
+                Message = sth.encryted,Key = sth.key,IV = sth.iv };
             var sendMsg = ims.SendMessage(sm);
             Assert.IsTrue(sendMsg.Result.success);
 
@@ -31,9 +31,9 @@ namespace Tests.ServiceTests
             var sth2 = SymmetricTestHelper.EncryptMessage(msg2);
             SendMessage sm2 = new SendMessage
             {
-                message = sth2.encryted,
-                key = sth2.key,
-                iv = sth2.iv
+                Message = sth2.encryted,
+                Key = sth2.key,
+                IV = sth2.iv
             };
             var sendMsg2 = ims.SendMessage(sm2);
             Assert.AreEqual("success",sendMsg.Result.message);
@@ -51,9 +51,9 @@ namespace Tests.ServiceTests
             var sth = SymmetricTestHelper.EncryptMessage(msgString);
             SendMessage sm = new SendMessage
             {
-                message = sth.encryted,
-                key = sth.key,
-                iv = sth.iv
+                Message = sth.encryted,
+                Key = sth.key,
+                IV = sth.iv
             };
             var sendMsg = ims.SendMessage(sm);
 
@@ -64,9 +64,9 @@ namespace Tests.ServiceTests
             var sth1 = SymmetricTestHelper.EncryptMessage(msgString1);
             SendMessage sm1 = new SendMessage
             {
-                message = sth1.encryted,
-                key = sth1.key,
-                iv = sth1.iv
+                Message = sth1.encryted,
+                Key = sth1.key,
+                IV = sth1.iv
             };
             var sendMsg1 = ims.SendMessage(sm1);
 
@@ -77,9 +77,9 @@ namespace Tests.ServiceTests
             var sth2 = SymmetricTestHelper.EncryptMessage(msgString2);
             SendMessage sm2 = new SendMessage
             {
-                message = sth2.encryted,
-                key = sth2.key,
-                iv = sth2.iv
+                Message = sth2.encryted,
+                Key = sth2.key,
+                IV = sth2.iv
             };
             var sendMsg2 = ims.SendMessage(sm2);
 

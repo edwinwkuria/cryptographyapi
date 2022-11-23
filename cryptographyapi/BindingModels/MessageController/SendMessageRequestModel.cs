@@ -2,8 +2,8 @@
 {
     public class SendMessageRequestModel
     {
-        public string message { get; set; }
-        public string key { get; set; }
-        public string iv { get; set; }
+        public string? Message { get; set; }
+        public string? Key { get; set; }
+        public string? IV { get; set; }
     }
 }

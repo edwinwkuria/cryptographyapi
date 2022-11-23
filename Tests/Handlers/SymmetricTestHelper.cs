@@ -12,8 +12,8 @@ namespace Tests.Handlers
     {
         public static (string encryted, string key, string iv) EncryptMessage(string msg)
         {
-            string k = null;
-            byte[] message = Encoding.UTF8.GetBytes(msg), key = null, iv = null, encrypted = null;
+            string k;
+            byte[] message = Encoding.UTF8.GetBytes(msg), key, iv, encrypted;
             using (Aes aesAlgorithm = Aes.Create())
             {
                 aesAlgorithm.KeySize = 256;

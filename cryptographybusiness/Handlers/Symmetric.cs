@@ -15,7 +15,7 @@ namespace cryptographybusiness.Handlers
             var keyByte = Convert.FromBase64String(key);
             var IVByte = Convert.FromBase64String(IV);
 
-            string msg = null;
+            string msg;
 
             // Create an Aes object
             // with the specified key and IV.
@@ -47,8 +47,8 @@ namespace cryptographybusiness.Handlers
 
         public static (string encrypted, string key, string iv) Encrypt(string msg)
         {
-            string k = null;
-            byte[] message = Encoding.UTF8.GetBytes(msg), key = null, iv = null, encrypted = null;
+            string k;
+            byte[] message = Encoding.UTF8.GetBytes(msg), key, iv, encrypted;
             using (Aes aesAlgorithm = Aes.Create())
             {
                 aesAlgorithm.KeySize = 256;

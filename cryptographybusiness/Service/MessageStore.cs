@@ -8,7 +8,7 @@ namespace cryptographybusiness.Service
 {
     internal class MessageStore : IMessageStore
     {
-        private static IList<Message> messages = null;
+        private static IList<Message>? messages;
         public Task<(bool success, string message, object? data)> AddMessage(Message model)
         {
             (bool success, string message, object? data) response;
